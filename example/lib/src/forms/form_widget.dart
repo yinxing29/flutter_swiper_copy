@@ -6,7 +6,10 @@ class FormWidget extends StatelessWidget {
 
   final Widget child;
 
-  FormWidget({this.label, this.child});
+  FormWidget({
+    required this.label,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,16 @@ class FormWidget extends StatelessWidget {
 
 class FormSelect<T> extends StatefulWidget {
   final String placeholder;
-  final ValueChanged<T> valueChanged;
+  final ValueChanged<T>? valueChanged;
   final List<dynamic> values;
   final dynamic value;
 
-  FormSelect({this.placeholder, this.valueChanged, this.value, this.values});
+  FormSelect({
+    required this.placeholder,
+    this.valueChanged,
+    this.value,
+    this.values = const [],
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -85,13 +93,11 @@ class _FormSelectState extends State<FormSelect> {
                         ),
                       ),
                       new Center(
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           onPressed: () {
-                            if (_selectedIndex >= 0) {
-                              widget
-                                  .valueChanged(widget.values[_selectedIndex]);
+                            if (_selectedIndex >= 0 && widget.valueChanged != null) {
+                              widget.valueChanged!(widget.values[_selectedIndex]);
                             }
-
                             setState(() {});
 
                             Navigator.of(context).pop();
@@ -114,16 +120,26 @@ class NumberPad extends StatelessWidget {
   final num step;
   final num max;
   final num min;
-  final ValueChanged<num> onChangeValue;
+  final ValueChanged<num>? onChangeValue;
 
-  NumberPad({this.number, this.step, this.onChangeValue, this.max, this.min});
+  NumberPad({
+    this.number = 0,
+    this.step = 0,
+    this.onChangeValue,
+    this.max = 0,
+    this.min = 0,
+  });
 
   void onAdd() {
-    onChangeValue(number + step > max ? max : number + step);
+    if (onChangeValue != null) {
+      onChangeValue!(number + step > max ? max : number + step);
+    }
   }
 
   void onSub() {
-    onChangeValue(number - step < min ? min : number - step);
+    if (onChangeValue != null) {
+      onChangeValue!(number - step < min ? min : number - step);
+    }
   }
 
   @override

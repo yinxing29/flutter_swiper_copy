@@ -13,37 +13,37 @@ class ExampleCustom extends StatefulWidget {
 
 class _ExampleCustomState extends State<ExampleCustom> {
   //properties want to custom
-  int _itemCount;
+  late int _itemCount;
 
-  bool _loop;
+  late bool _loop;
 
-  bool _autoplay;
+  late bool _autoplay;
 
-  int _autoplayDely;
+  late int _autoplayDely;
 
-  double _padding;
+  late double _padding;
 
-  bool _outer;
+  late bool _outer;
 
-  double _radius;
+  late double _radius;
 
-  double _viewportFraction;
+  late double _viewportFraction;
 
-  SwiperLayout _layout;
+  late SwiperLayout _layout;
 
-  int _currentIndex;
+  late int _currentIndex;
 
-  double _scale;
+  late double _scale;
 
-  Axis _scrollDirection;
+  late Axis _scrollDirection;
 
-  Curve _curve;
+  late Curve _curve;
 
-  double _fade;
+  late double _fade;
 
-  bool _autoplayDisableOnInteraction;
+  late bool _autoplayDisableOnInteraction;
 
-  CustomLayoutOption customLayoutOption;
+  late CustomLayoutOption customLayoutOption;
 
   Widget _buildItem(BuildContext context, int index) {
     return ClipRRect(
@@ -133,13 +133,14 @@ class _ExampleCustomState extends State<ExampleCustom> {
       indicatorLayout: PageIndicatorLayout.COLOR,
       autoplayDisableOnInteraction: _autoplayDisableOnInteraction,
       pagination: new SwiperPagination(
-          builder: const DotSwiperPaginationBuilder(
+          builder: DotSwiperPaginationBuilder(
               size: 20.0, activeSize: 20.0, space: 10.0)),
     );
   }
 
-  SwiperController _controller;
+  late SwiperController _controller;
   TextEditingController numberController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
@@ -154,13 +155,13 @@ class _ExampleCustomState extends State<ExampleCustom> {
           new Text("Index:$_currentIndex"),
           new Row(
             children: <Widget>[
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   _controller.previous(animation: true);
                 },
                 child: new Text("Prev"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   _controller.next(animation: true);
                 },
@@ -170,7 +171,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
                   child: new TextField(
                 controller: numberController,
               )),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   var text = numberController.text;
                   setState(() {
@@ -193,8 +194,10 @@ class _ExampleCustomState extends State<ExampleCustom> {
                     SwiperLayout.CUSTOM
                   ],
                   valueChanged: (value) {
-                    _layout = value;
-                    setState(() {});
+                    if (value != null && value is SwiperLayout) {
+                      _layout = value;
+                      setState(() {});
+                    }
                   })),
           new FormWidget(
             label: "scrollDirection",
@@ -326,7 +329,10 @@ class _ExampleCustomState extends State<ExampleCustom> {
                     Curves.fastOutSlowIn
                   ],
                   valueChanged: (value) {
-                    _curve = value;
+                    if (value != null && value is Curve) {
+                      _curve = value;
+                      setState(() {});
+                    }
                     setState(() {});
                   })),
         ],

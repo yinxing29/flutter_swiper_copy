@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'src/ExampleCustom.dart';
 import 'src/config.dart';
 import 'src/ExampleSwiperInScrollView.dart';
-
-import 'package:flutter/cupertino.dart';
 
 void main() => runApp(new MyApp());
 
@@ -39,9 +36,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
@@ -80,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title ?? ""),
       ),
       body: new ListView(
         children: render(context, [
@@ -318,17 +315,21 @@ class ExamplePhone extends StatelessWidget {
 }
 
 class ScaffoldWidget extends StatelessWidget {
-  final Widget child;
-  final String title;
+  final Widget? child;
+  final String? title;
   final List<Widget> actions;
 
-  ScaffoldWidget({this.child, this.title, this.actions});
+  ScaffoldWidget({
+    this.child,
+    this.title,
+    this.actions = const [],
+  });
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(title),
+        title: new Text(title ?? ""),
         actions: actions,
       ),
       body: child,

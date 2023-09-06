@@ -12,24 +12,24 @@ class SwiperControl extends SwiperPlugin {
   final double size;
 
   ///Icon normal color, The theme's [ThemeData.primaryColor] by default.
-  final Color color;
+  final Color? color;
 
   ///if set loop=false on Swiper, this color will be used when swiper goto the last slide.
   ///The theme's [ThemeData.disabledColor] by default.
-  final Color disableColor;
+  final Color? disableColor;
 
   final EdgeInsetsGeometry padding;
 
-  final Key key;
+  final Key? key;
 
-  const SwiperControl(
-      {this.iconPrevious: Icons.arrow_back_ios,
-      this.iconNext: Icons.arrow_forward_ios,
-      this.color,
-      this.disableColor,
-      this.key,
-      this.size: 30.0,
-      this.padding: const EdgeInsets.all(5.0)});
+  const SwiperControl({this.iconPrevious = Icons.arrow_back_ios,
+    this.iconNext = Icons.arrow_forward_ios,
+    this.color,
+    this.disableColor,
+    this.key,
+    this.size = 30.0,
+    this.padding = const EdgeInsets.all(5.0),
+  });
 
   Widget buildButton(SwiperPluginConfig config, Color color, IconData iconDaga,
       int quarterTurns, bool previous) {

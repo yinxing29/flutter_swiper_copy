@@ -20,19 +20,19 @@ class InnerSwiper extends StatefulWidget {
 }
 
 class _InnerSwiperState extends State<InnerSwiper> {
-  SwiperController controller;
+  late SwiperController controller;
 
-  List<bool> autoplayes;
+  late List<bool> autoplayes;
 
-  List<SwiperController> controllers;
+  late List<SwiperController> controllers;
 
   @override
   void initState() {
     controller = new SwiperController();
-    autoplayes = new List()
+    autoplayes = []
       ..length = 10
       ..fillRange(0, 10, false);
-    controllers = new List()
+    controllers = []
       ..length = 10
       ..fillRange(0, 10, new SwiperController());
     super.initState();
@@ -64,7 +64,7 @@ class _InnerSwiperState extends State<InnerSwiper> {
                 ),
                 height: 300.0,
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   setState(() {
                     autoplayes[index] = true;
@@ -72,7 +72,7 @@ class _InnerSwiperState extends State<InnerSwiper> {
                 },
                 child: new Text("Start autoplay"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   setState(() {
                     autoplayes[index] = false;

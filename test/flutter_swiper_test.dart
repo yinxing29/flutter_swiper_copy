@@ -5,12 +5,16 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 void main() {
   testWidgets('Default Swiper', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(
+      MaterialApp(
         home: Swiper(
-            itemBuilder: (context, index) {
-              return Text("0");
-            },
-            itemCount: 10)));
+          itemBuilder: (context, index) {
+            return Text("0");
+          },
+          itemCount: 10,
+        ),
+      ),
+    );
 
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
