@@ -492,11 +492,9 @@ class _SwiperState extends _SwiperTimerMixin {
       );
       if (widget.autoplayDisableOnInteraction && widget.autoplay) {
         if (_timer == null) _startAutoplay();
-        print("-=-=- = -= -= -= -= - =- ");
         return new NotificationListener(
           child: child,
           onNotification: (ScrollNotification notification) {
-            print("-=-=- = -= -= -= -= - =- 111122");
             if (notification is ScrollStartNotification) {
               if (notification.dragDetails != null) {
                 //by human
