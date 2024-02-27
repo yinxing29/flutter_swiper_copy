@@ -9,18 +9,18 @@ dependencies:
 
   transformer_page_view:
     git:
-      url: https://github.com/yinxing29/transformer_page_view_copy
-      ref: 8bc77c5d7a5435b82e0d1999ee0333adc7c82e93
+      url: https://github.com/yinxing29/transformer_page_view_copy.git
+      ref: 03ae8b43dfa746beb56a6840cb2f09e106095515
 
   flutter_page_indicator:
     git:
       url: https://github.com/yinxing29/flutter_page_indicator_copy.git
-      ref: 1130a5461e095ab0309b0fcdeafa2a57a59afbb6
+      ref: 5c6f8e86174d159a43edd803229b32e101a755a9
 
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.12.0 <3.2.0"
+  sdk: ">=2.12.0 <3.3.0"
   flutter: ">=0.1.4 <3.0.0"
 
 dev_dependencies:
